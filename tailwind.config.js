@@ -8,7 +8,11 @@ module.exports = { // <-- UBAH DI SINI
   ],
   darkMode: ["class", "[data-theme='dark']"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'], 
+      },
+    },
   },
   plugins: [],
   corePlugins: {

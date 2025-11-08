@@ -80,9 +80,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'CashDocs',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'cashDocs Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -90,14 +90,10 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
+        {to: '/about', label: 'About', position: 'left'},
       ],
     },
     footer: {
