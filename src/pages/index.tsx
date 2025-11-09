@@ -3,17 +3,27 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import HomepageFeatures from '../components/HomepageFeatures';
+import { DotPattern } from '/components/ui/dot-pattern';
+// import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
+import { cn } from '/lib/utils';
+import { Codesandbox } from 'lucide-react';
 
 function DocHeroSection() {
   return (
-    <div className="relative overflow-hidden ">
+    <div className="relative overflow-hidden font-intrument">
       {/* Container utama dengan padding atas-bawah */}
+      {/* <div className=""></div> */}
+      {<DotPattern
+        className={`${cn(
+          "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]"
+        )} absolute left-1/2 top-0 -z-10 w-full h-full -translate-x-1/2 transform-gpu stroke-slate-300/20 dark:stroke-slate-700/20`}
+      />}
       <div className="relative z-10 mx-auto max-w-5xl px-4 py-24 text-center sm:py-32 lg:px-8">
         <ChangelogBanner />
+        
         {/* 1. Judul Utama (Headline) */}
         <h1 className="text-4xl font-bold tracking-tighter text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
           <span className='text-blue-800'>Cash</span><span className='text-green-800'>UP</span> Service API Documentation
@@ -33,39 +43,28 @@ function DocHeroSection() {
         </p>
 
         {/* 3. Tombol Call to Action (CTA) */}
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-10 flex items-center font-sans justify-center gap-2 flex-row">
           <Link
-            href="/guides/quickstart" // Arahkan ke quickstart
+            href="/docs/getting-started" // Arahkan ke quickstart
             className="flex h-11 hover:no-underline items-center justify-center rounded-xl bg-green-700 px-6 text-base font-medium text-white shadow-sm hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
             Get Started
           </Link>
           <Link
-            href="/api-reference" // Arahkan ke referensi API
+            href="/" // Arahkan ke referensi API
             className="flex h-11 items-center justify-center border border-gray-300 px-6 text-base font-medium text-gray-800 focus:outline-none dark:border-gray-700 dark:text-gray-200">
-            View API Reference
+            Sand Box <Codesandbox className='ml-2 size-5'/>
           </Link>
         </div>
 
        
       </div>
-
-      {/* Background Grid Titik-titik Samar (Sama kayak kemarin) */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0)',
-          backgroundSize: '1rem 1rem',
-        }}
-        aria-hidden="true"
-      />
     </div>
   );
 }
 
 function ChangelogBanner() {
   return (
-    <div className="relative mb-8 flex w-auto flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-full border border-gray-200 px-4 text-center">
+    <div className="relative sm:w-8/12 m-auto sm:h-8 hidden bg-white/10 backdrop-blur-sm dark:bg-gray-950/75 mb-8 sm:flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-full px-4 text-center">
       
       {/* 1. Badge "Latest" */}
       <span className="rounded-full bg-sky-100 px-3 py-0.5 text-xs font-medium text-sky-800 dark:bg-sky-900 dark:text-sky-200">

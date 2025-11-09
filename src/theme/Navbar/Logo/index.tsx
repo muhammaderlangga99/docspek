@@ -6,6 +6,7 @@ import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 // import type {Props} from '@theme/Navbar/Logo';
 import clsx from 'clsx'; // Import clsx kalau belum ada
+import { GitCompareArrows } from 'lucide-react';
 
 // (Mungkin ada import lain, biarkan saja)
 
@@ -39,13 +40,13 @@ export default function NavbarLogo({className, ...props}): React.ReactElement {
           <span className='text-blue-800'>cash</span><span className='text-green-800'>Docs</span>
           
           {/* --- TAMBAHKAN KODE HTML KAMU DI SINI --- */}
-          {process.env.NODE_ENV === 'development' && (
+          {/* {process.env.NODE_ENV === 'development' && (
             <span className="ml-2 rounded bg-orange-400 px-1.5 py-0.5 text-xs font-bold text-black">
               DEV
             </span>
-          )}
+          )} */}
           {/* -------------------------------------- */}
-
+            
         </strong>
       )}
     </Link>

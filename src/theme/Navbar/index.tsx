@@ -5,7 +5,7 @@ import NavbarContent from '@theme/Navbar/Content';
 export default function Navbar(): ReactNode {
   return (
     <NavbarLayout>
-      <div className="w-11/12 m-auto font-sans">
+      <div className="w-11/12 m-auto font-intrument">
         <NavbarContent />
       </div>
     </NavbarLayout>

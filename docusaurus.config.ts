@@ -77,7 +77,9 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
+      defaultMode: 'light',
+      disableSwitch: true,
     },
     navbar: {
       title: 'CashDocs',
@@ -87,24 +89,26 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
+          type: 'localeDropdown',
+          // sidebarId: '',
+          position: 'right',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {to: '/about', label: 'About', position: 'left'},
+        {to: '/docs/getting-started', label: 'Docs', position: 'left'},
+        {to: 'https://cashup.id/', label: 'About Us', position: 'left'},
+        {to: 'https://secure.cashlez.com/access-portal-v2/#!/login', label: 'cashPortal', position: 'left'},
+        // {to: '/blog', label: 'Blog', position: 'left'},
       ],
+      // hideOnScroll: true,
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/intro',
+              to: '/docs/getting-started',
             },
           ],
         },
@@ -144,6 +148,10 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    i18n: {
+      defaultLocale: 'en',
+      locales: ['en', 'fr'],
     },
   } satisfies Preset.ThemeConfig,
 };

@@ -1,40 +1,44 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Cashlez Link
 
-## 1. Introduction
+## Introduction
 
 Cashlez Link adalah layanan integrasi pembayaran online yang disediakan oleh PT Cashlez Worldwide Indonesia Tbk. Layanan ini memungkinkan merchant untuk memproses transaksi langsung melalui website mereka tanpa menggunakan perangkat Electronic Data Capture (EDC). Cashlez Link mendukung berbagai metode pembayaran, termasuk kartu kredit/debit, virtual account, dan QRIS. Setelah transaksi diproses, sistem akan secara otomatis mengembalikan hasil transaksi (berhasil/gagal) ke sistem merchant.
 
-## 2. Integration Flow
+## Integration Flow
 
 Integrasi ini akan melibatkan beberapa entitas, termasuk Pelanggan (Customer), Web Merchant, dan Sistem cashUP, yang semuanya dapat dilihat secara detail pada diagram di bawah ini:
 
 ![cashlez link flow](./img/flow-czlink.png)
 
-## 3. API Service
+## API Service
 
 Environment ini digunakan untuk Production.
 <table>
-  <tr>
-    <th>Path</th>
-    <td>`/MmCorePsgsHost/v1/login`</td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Path</th>
+      <td>`/MmCorePsgsHost/v1/login`</td>
+    </tr>
+  </tbody>
 </table>
-### A. Login
+### Login
 
 Login digunakan untuk mengidentifikasi pengguna dan mendapatkan token untuk digunakan pada permintaan lainnya.
 <table>
-  <tr>
-    <th>Path</th>
-    <td>`/MmCorePsgsHost/v1/login`</td>
-  </tr>
-  <tr>
-    <th>Method</th>
-    <td>`POST`</td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Path</th>
+      <td>`/MmCorePsgsHost/v1/login`</td>
+    </tr>
+    <tr>
+      <th>Method</th>
+      <td>`POST`</td>
+    </tr>
+  </tbody>
 </table> 
 
 #### I. Request
@@ -113,38 +117,74 @@ Berikut adalah data response dari Login:
 }
 ```
 
-### B. Generate Link
+### Generate Link
 
 API Generate Link digunakan untuk memulai transaksi pembayaran dengan menghasilkan link pembayaran. API ini memungkinkan sistem merchant untuk membuat pesanan pembayaran online, di mana responsnya akan mencakup detail penting seperti link yang dihasilkan, order_id, mata uang, dll.
 
+<!-- <table>
+  <tbody>
+    <tr>
+      <th>Path</th>
+      <td>`/MmCoreCzLinkHost/api/v1/generate`</td>
+    </tr>
+    <tr>
+      <th>Method</th>
+      <td>`POST`</td>
+    </tr>
+    <tr>
+      <table>
+        <th>Header</th>
+        <tr>
+            <th>
+                Key
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+        <tr>
+            <td>
+              Authorization
+            </td>
+            <td>
+              JWT Token from Login response
+            </td>
+        </tr>
+      </table>
+    </tr>
+  </tbody>
+</table> -->
+
 <table>
-  <tr>
-    <th>Path</th>
-    <td>`/MmCoreCzLinkHost/api/v1/generate`</td>
-  </tr>
-  <tr>
-    <th>Method</th>
-    <td>`POST`</td>
-  </tr>
-  <tr>
-    <th>Header</th>
+  <tbody>
     <tr>
-        <th>
-            Key
-        </th>
-        <th>
-            Value
-        </th>
+      <th>Path</th>
+      <td>`/MmCoreCzLinkHost/api/v1/generate`</td>
     </tr>
     <tr>
-        <td>
-        Authorization
-        </td>
-        <td>
-        JWT Token from Login response
-        </td>
+      <th>Method</th>
+      <td>`POST`</td>
     </tr>
-  </tr>
+    <tr>
+      <th>Header</th>
+      <td>
+        <table>
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Authorization</td>
+              <td>JWT Token from Login response</td>
+            </tr>
+            </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 #### I. Request
@@ -213,19 +253,21 @@ Berikut adalah parameter body response untuk Generate Payment.
 }
 ```
 
-### C. Check Payment Status
+### Payment Status
 
 API Check Payment Status digunakan untuk memverifikasi apakah pembayaran yang sebelumnya dibuat telah berhasil diselesaikan atau masih tertunda.
 
 <table>
-  <tr>
-    <th>Path</th>
-    <td>`/MmCoreCzLinkHost/internal/payment/status/{order_id}`</td>
-  </tr>
-  <tr>
-    <th>Method</th>
-    <td>`GET`</td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Path</th>
+      <td>`/MmCoreCzLinkHost/internal/payment/status/{order_id}`</td>
+    </tr>
+    <tr>
+      <th>Method</th>
+      <td>`GET`</td>
+    </tr>
+  </tbody>
 </table> 
 
 #### I. Response
@@ -275,7 +317,7 @@ Berikut adalah parameter body response untuk Check Payment Status.
 }
 ```
 
-### D. Callback Payment
+### Callback Payment
 
 Callback digunakan untuk memberikan notifikasi ke Partner setelah transaksi diproses.
 
@@ -290,8 +332,7 @@ Callback digunakan untuk memberikan notifikasi ke Partner setelah transaksi dipr
 
 | Key | Value |
 | :--- | :--- |
-| `api-secret` | Hasil hashing menggunakan SHA512, dengan format `partnerld` + `apiKey`. <br /> Contoh: <br /> - `partnerld`: 12345 <br /> - `apiKey`: 2256097 <br /> - `api-secret` (SHA-512) = 123452256097 -> 7fa181...bbe21dd <br /> *this is your api-secret value
- |
+| `api-secret` | Hasil hashing menggunakan SHA512, dengan format `partnerld` + `apiKey`. <br /> Contoh: <br /> - `partnerld`: 12345 <br /> - `apiKey`: 2256097 <br /> - `api-secret` (SHA-512) = 123452256097 -> 7fa181...bbe21dd <br /> *this is your api-secret value |
 | `partnerld` | Disediakan oleh cashlez |
 
 **Example Request Body:**
@@ -329,7 +370,7 @@ Callback digunakan untuk memberikan notifikasi ke Partner setelah transaksi dipr
 }
 ```
 
-## 4. Layout Preview
+## Layout Preview
 
 Berikut adalah layout halaman pertama untuk memilih channel pembayaran:
 

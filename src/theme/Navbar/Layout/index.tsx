@@ -77,8 +77,8 @@ export default function NavbarLayout({children}: Props): ReactNode {
         // Cek state 'isScrolled'
         isScrolled
           ? [ // JIKA SUDAH DI-SCROLL (isScrolled = true)
-              'bg-white/75 backdrop-blur-md dark:bg-gray-950/75', // Kasih efek glass
-              'border-b border-white/20 dark:border-white/10', // Kasih border
+              '', // Kasih efek glass
+              'border-b border-white/20 dark:border-white/10 z-[9999]', // Kasih border
             ]
           : [ // JIKA DI PALING ATAS (isScrolled = false)
               '', // Background transparan

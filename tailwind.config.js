@@ -11,6 +11,7 @@ module.exports = { // <-- UBAH DI SINI
     extend: {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'], 
+        intrument: ['Instrument Sans', 'sans-serif'], 
       },
     },
   },
